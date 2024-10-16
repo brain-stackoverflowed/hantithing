@@ -110,4 +110,4 @@ def admin_redirect():
     return redirect(url_for('admin_login'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
