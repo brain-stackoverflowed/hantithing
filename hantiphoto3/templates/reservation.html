@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 성공</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>예약성공!</h1>
+        <p>차례가 되면 알려드릴게요!</p>
+        
+        <div class="reservation-info">
+            <p><strong>이름:</strong> {{ name }}</p>
+            <p><strong>전화번호:</strong> {{ phone }}</p>
+            <p><strong>사진 종류:</strong> {{ photo_type }}</p>
+            <p><strong>예약번호:</strong> {{ reservation_id }}</p>
+        </div>
+        
+        <button onclick="window.location.href='/'">홈으로 돌아가기</button>
+    </div>
+</body>
+</html>

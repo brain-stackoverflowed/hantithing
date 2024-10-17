@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>예약 관리</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>예약번호</th>
+                    <th>사진 종류</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                    <th>처리 여부</th>
+                    <th>번호 복사</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation[0] }}</td>
+                    <td>{{ reservation[3] }}</td>
+                    <td>{{ reservation[1] }}</td>
+                    <td>{{ reservation[2] }}</td>
+                    <td>
+                        <input type="checkbox" onchange="updateStatus('{{ reservation[0] }}', this.checked)" {% if reservation[4] == 1 %} checked {% endif %}>
+                    </td>
+                    <td><button onclick="copyNumber('{{ reservation[2] }}')">복사</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
