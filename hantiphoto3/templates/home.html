@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인생 사진관</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>안녕하세요! 
+        <br>인생 사진관입니다!📷</h1>
+        <form action="/reservation" method="POST">
+            <div class="input-row">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" required pattern="[가-힣a-zA-Z]+" title="한글 또는 영어만 입력하세요">
+            </div>
+
+            <div class="input-row">
+                <label for="phone">전화번호</label>
+                <input type="text" name="phone" id="phoneInput" placeholder="000-0000-0000" required pattern="\d{3}-\d{4}-\d{4}" maxlength="13" required>
+            </div>
+
+            <script>
+                const phoneInput = document.getElementById('phoneInput');
+                const submitButton = document.getElementById('submitButton');
+        
+                phoneInput.addEventListener('input', function () {
+                    let rawValue = phoneInput.value.replace(/\D/g, '');
+                    if (rawValue.length > 3 && rawValue.length <= 7) {
+                        phoneInput.value = rawValue.slice(0, 3) + '-' + rawValue.slice(3);
+                    } else if (rawValue.length > 7) {
+                        phoneInput.value = rawValue.slice(0, 3) + '-' + rawValue.slice(3, 7) + '-' + rawValue.slice(7, 11);
+                    }
+        
+                    if (rawValue.length === 11) {
+                        submitButton.disabled = false;
+                        submitButton.classList.add('active');
+                    } else {
+                        submitButton.disabled = true;
+                        submitButton.classList.remove('active');
+                    }
+                });
+            </script>
+        
+
+
+            <div class="input-row">
+                <label for="photo_type">사진 종류</label>
+                <select id="photo_type" name="photo_type" required>
+                    <option value="" disabled selected>사진 종류</option>
+                    <option value="프로필사진">프로필사진</option>
+                    <option value="인생네컷">인생네컷</option>
+                    <option value="폴라로이드">폴라로이드</option>
+                </select>
+            </div>
+
+            <div class="button-row">
+                <button type="submit">예약하기</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
